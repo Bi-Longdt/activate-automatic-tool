@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>✅ Done</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 60px;
+            background: linear-gradient(to right, #f8fafc, #e2e8f0);
+        }
+
+        .info-box {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 400px;
+            margin: auto;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .typing-rainbow {
+            display: inline-block;
+            font-size: 24px;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid rgba(255, 255, 255, 0.75);
+
+            background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #ff0080);
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            animation: blink 0.7s step-end infinite, rainbowShift 5s linear infinite;
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent }
+        }
+
+        @keyframes rainbowShift {
+            0% { background-position: 0% }
+            100% { background-position: 100% }
+        }
+
+        .copy-btn {
+            margin-left: 10px;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
+
+        input {
+            font-size: 16px;
+            width: 220px;
+            padding: 5px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .link {
+            margin-top: 20px;
+        }
+
+    </style>
+    <script>
+        function copyToClipboard(id) {
+            var copyText = document.getElementById(id);
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            alert("Đã copy: " + copyText.value);
+        }
+    </script>
+</head>
+<body>
+    <div class="info-box">
+        <!-- ✅ Thêm dòng này để hiệu ứng gõ chữ hoạt động -->
+        <h2 id="typewriter" class="typing-rainbow"></h2>
+
+        <p><strong>Tài khoản đã được đồng bộ TOOL </strong></p>
+
+        <div class="link">
+            <label><strong>Link đăng nhập:</strong></label><br>
+            <input type="text" value="https://hackslot.me/" id="loginlink" readonly>
+            <button class="copy-btn" onclick="copyToClipboard('loginlink')">Copy</button>
+        </div>
+
+        <div>
+            <label><strong>Username:</strong></label><br>
+            <input type="text" value="{{ username }}" id="username" readonly>
+            <button class="copy-btn" onclick="copyToClipboard('username')">Copy</button>
+        </div>
+
+        <div>
+            <label><strong>Password:</strong></label><br>
+            <input type="text" value="{{ username }}" id="password" readonly>
+            <button class="copy-btn" onclick="copyToClipboard('password')">Copy</button>
+        </div>
+
+        <a href="/" style="display: inline-block; margin-top: 30px; text-decoration: none; color: white; background-color: #28a745; padding: 10px 20px; border-radius: 8px;">🔙 Quay lại trang chính</a>
+    </div>
+
+    <!-- ✅ Chuyển script xuống cuối để chắc chắn DOM đã sẵn sàng -->
+    <script>
+        const text = "KÍCH TOOL THÀNH CÔNG!";
+        const el = document.getElementById("typewriter");
+        let index = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            el.textContent = text.substring(0, index);
+
+            if (!isDeleting) {
+                if (index < text.length) {
+                    index++;
+                    setTimeout(typeEffect, 120);
+                } else {
+                    isDeleting = true;
+                    setTimeout(typeEffect, 1000);
+                }
+            } else {
+                if (index > 0) {
+                    index--;
+                    setTimeout(typeEffect, 50);
+                } else {
+                    isDeleting = false;
+                    setTimeout(typeEffect, 300);
+                }
+            }
+        }
+
+        typeEffect();
+    </script>
+</body>
+</html>
